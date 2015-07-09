@@ -7,3 +7,8 @@ block content
   script(type='text/javascript').
     var user = !{JSON.stringify(user)};
     var tweets = !{JSON.stringify(tweets)};
+
+    var feed = new Feed({ username:"BarackObama" })
+    feed.fetch().then( function(){
+      console.log(feed);
+    })
