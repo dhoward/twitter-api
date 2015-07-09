@@ -3,3 +3,7 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+
+  script(type='text/javascript').
+    var user = !{JSON.stringify(user)};
+    var tweets = !{JSON.stringify(tweets)};
