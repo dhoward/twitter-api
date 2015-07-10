@@ -4,13 +4,13 @@ var Tweet = React.createClass({displayName: "Tweet",
     var tweet = this.props.tweet;
 
     return (
-      React.createElement("div", null, 
+      React.createElement("div", {className: "tweet"}, 
 
-        React.createElement("div", null, 
-           tweet.created_at
+        React.createElement("p", {className: "time"}, 
+           formatDate(tweet.created_at) 
         ), 
 
-        React.createElement("div", null, 
+        React.createElement("p", {className: "content"}, 
            tweet.text
         )
 

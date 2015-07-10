@@ -9,7 +9,8 @@ var User = React.createClass({displayName: "User",
 
     return (
       React.createElement("div", {className: "user"}, 
-        React.createElement("span", null,  user.name), " ", React.createElement("span", null,  user.followers_count, " Followers")
+        React.createElement("img", {src:  user. profile_image_url}), 
+        React.createElement("span", {className: "name"}, "@",  user.name), " ", React.createElement("span", {className: "followers"},  user.followers_count, " Followers")
       )
     )
   }

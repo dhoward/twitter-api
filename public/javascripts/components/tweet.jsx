@@ -4,15 +4,15 @@ var Tweet = React.createClass({
     var tweet = this.props.tweet;
 
     return (
-      <div>
+      <div className="tweet">
 
-        <div>
-          { tweet.created_at }
-        </div>
+        <p className="time">
+          { formatDate(tweet.created_at) }
+        </p>
 
-        <div>
+        <p className="content">
           { tweet.text }
-        </div>
+        </p>
 
       </div>
     )

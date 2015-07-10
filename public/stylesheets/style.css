@@ -1,8 +1,79 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #b4d0de;
 }
 
 a {
   color: #00B7FF;
+}
+
+#content-root .container {
+  padding: 30px 0;
+  border-radius: 10px;
+  max-width: 600px;
+  border: 1px solid #ccc;
+  background-color: #eee;
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.5);
+}
+
+.instructions {
+  margin-bottom: 20px;
+}
+
+.instructions p {
+  text-align: center;
+}
+
+#content-root .search-form input {
+  margin-left: 5%;
+  width: 65%;
+}
+
+#content-root .search-form .search-button {
+  margin: 0 5%;
+  width: 20%;
+}
+
+.user {
+  padding: 20px;
+  margin-top: 20px;
+  border-top: 2px solid #999;
+}
+
+.user img {
+  margin-right: 20px;
+}
+
+.user .name {
+  font-size: 24px;
+}
+
+.user .followers {
+  font-size: 20px;
+  margin-left: 20px;
+}
+
+.tweets {
+  border-top: 2px solid #999;
+}
+
+.tweet-headline {
+  margin: 0;
+  text-align: center;
+}
+
+.tweet {
+  padding: 20px;
+  border-top: 1px solid #ccc;
+}
+
+.tweet .time {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.tweet .content {
+  font-size: 14px;
 }

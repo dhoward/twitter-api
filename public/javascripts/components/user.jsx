@@ -9,7 +9,8 @@ var User = React.createClass({
 
     return (
       <div className="user">
-        <span>{ user.name }</span> <span>{ user.followers_count } Followers</span>
+        <img src={ user. profile_image_url} />
+        <span className="name">@{ user.name }</span> <span className="followers">{ user.followers_count } Followers</span>
       </div>
     )
   }

@@ -21,15 +21,23 @@ var App = React.createClass({
   },
 
   renderTweets: function() {
-    var tweets = this.state.feed.get('tweets');
-
-    if(!tweets) {
-      return <h2>Use the search bar above to look for tweets!</h2>
-    }
-
-    return tweets.map( function(tweet) {
+    var tweets = this.state.feed.get('tweets') || [];
+    var tweetItems =  tweets.map( function(tweet) {
       return <Tweet key={tweet.id} tweet={tweet} />
     });
+
+    if(!tweets.length) {
+      return null;
+    } else {
+      return (
+        <div className="tweets">
+          <div className="tweet">
+            <h3 className="tweet-headline">Tweets</h3>
+          </div>
+          { tweetItems }
+        </div>
+      )
+    }
   },
 
   checkEnter: function(event) {
@@ -41,14 +49,32 @@ var App = React.createClass({
   render: function() {
     return (
 
-      <div>
-        <div>
-          <input ref="username" onKeyDown={this.checkEnter}></input>
-          <button onClick={this.getFeed}>Get Feed</button>
+      <div className="container">
+
+        <div className="row instructions">
+          <div className="col-xs-12">
+            <p>Welcome to the twitter api test! Use the search bar to look for tweets.</p>
+          </div>
         </div>
 
-        <User user={ this.state.feed.get('user') } />
-        { this.renderTweets() }
+        <div className="row form-inline search-form">
+          <div className="col-xs-12">
+            <input className="form-control" ref="username" placeholder="username" onKeyDown={this.checkEnter}></input>
+            <button className="btn btn-primary search-button" onClick={this.getFeed}>Get Feed</button>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col-xs-12">
+            <User user={ this.state.feed.get('user') } />
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col-xs-12">
+            { this.renderTweets() }
+          </div>
+        </div>
 
       </div>
     )

@@ -21,15 +21,23 @@ var App = React.createClass({displayName: "App",
   },
 
   renderTweets: function() {
-    var tweets = this.state.feed.get('tweets');
-
-    if(!tweets) {
-      return React.createElement("h2", null, "Use the search bar above to look for tweets!")
-    }
-
-    return tweets.map( function(tweet) {
+    var tweets = this.state.feed.get('tweets') || [];
+    var tweetItems =  tweets.map( function(tweet) {
       return React.createElement(Tweet, {key: tweet.id, tweet: tweet})
     });
+
+    if(!tweets.length) {
+      return null;
+    } else {
+      return (
+        React.createElement("div", {className: "tweets"}, 
+          React.createElement("div", {className: "tweet"}, 
+            React.createElement("h3", {className: "tweet-headline"}, "Tweets")
+          ), 
+           tweetItems 
+        )
+      )
+    }
   },
 
   checkEnter: function(event) {
@@ -41,14 +49,32 @@ var App = React.createClass({displayName: "App",
   render: function() {
     return (
 
-      React.createElement("div", null, 
-        React.createElement("div", null, 
-          React.createElement("input", {ref: "username", onKeyDown: this.checkEnter}), 
-          React.createElement("button", {onClick: this.getFeed}, "Get Feed")
+      React.createElement("div", {className: "container"}, 
+
+        React.createElement("div", {className: "row instructions"}, 
+          React.createElement("div", {className: "col-xs-12"}, 
+            React.createElement("p", null, "Welcome to the twitter api test! Use the search bar to look for tweets.")
+          )
         ), 
 
-        React.createElement(User, {user:  this.state.feed.get('user') }), 
-         this.renderTweets() 
+        React.createElement("div", {className: "row form-inline search-form"}, 
+          React.createElement("div", {className: "col-xs-12"}, 
+            React.createElement("input", {className: "form-control", ref: "username", placeholder: "username", onKeyDown: this.checkEnter}), 
+            React.createElement("button", {className: "btn btn-primary search-button", onClick: this.getFeed}, "Get Feed")
+          )
+        ), 
+
+        React.createElement("div", {className: "row"}, 
+          React.createElement("div", {className: "col-xs-12"}, 
+            React.createElement(User, {user:  this.state.feed.get('user') })
+          )
+        ), 
+
+        React.createElement("div", {className: "row"}, 
+          React.createElement("div", {className: "col-xs-12"}, 
+             this.renderTweets() 
+          )
+        )
 
       )
     )
