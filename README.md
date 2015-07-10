@@ -9,9 +9,9 @@ This is a simple one-page application that demonstrates use of the Twitter API. 
 
 ###Front end
 
-The majority of the front end consists of 3 React components: User, Tweet, and App.  User and Tweet should be self explanatory; App is responsible for handling input into the search bar, and rendering the User and a list of Tweets when there is data for them.
+The majority of the front end consists of 3 React components: User, Tweet, and App, located in the public/javascripts/components folder.  User and Tweet should be self explanatory; App is responsible for handling input into the search bar, and rendering the User and a list of Tweets when there is data for them. (Note: the public/javascripts/components_build folder is simply a compiled version of the components folder).
 
-There is also one Backbone model: Feed. When the user makes a new search, the App component creates a new Feed, calls its fetch() method to get data from the back end, and displays that data when it returns. When the “Load More” button is pressed, the App calls the getMore() function of the existing Feed, and then displays that data.
+There is also one Backbone model, Feed, located in public/javascripts/models. When the user makes a new search, the App component creates a new Feed, calls its fetch() method to get data from the back end, and then displays that data. When the “Load More” button is pressed, the App calls the getMore() function of the existing Feed, and then displays that data.
 
 
 ###Back end
@@ -33,7 +33,7 @@ $ node app.js
 
 ##Build Tools
 
-React components in this project are written in jsx, and then compiled into javascript. They are then bundled (via browserify) with all other dependencies into the bundle.js file that is served to the browser. Each of these steps is very simple:
+React components in this project are written in jsx, and then compiled into regular javascript. They are then bundled (via browserify) with all other dependencies into the bundle.js file that is served to the browser. Each of these steps is very simple:
 
 #####Automatically compile .jsx files into .js
 
