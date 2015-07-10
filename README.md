@@ -13,6 +13,8 @@ The majority of the front end consists of 3 React components: User, Tweet, and A
 
 There is also one Backbone model, Feed, located in public/javascripts/models. When the user makes a new search, the App component creates a new Feed, calls its fetch() method to get data from the back end, and then displays that data. When the “Load More” button is pressed, the App calls the getMore() function of the existing Feed, and then displays that data.
 
+All css is in the public/stylesheets folder. Bootstrap was used as a baseline, and all additional styles are in styles.css.
+
 
 ###Back end
 
