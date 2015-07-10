@@ -34593,6 +34593,7 @@ React.render(
 );
 
 },{"./components_build/app":177}],181:[function(require,module,exports){
+var $ = require('jquery');
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
@@ -34633,7 +34634,7 @@ module.exports = Backbone.Model.extend({
 
 });
 
-},{"backbone":1}],182:[function(require,module,exports){
+},{"backbone":1,"jquery":3}],182:[function(require,module,exports){
 var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
 exports.formatDate = function(dateNum) {
