@@ -76,6 +76,14 @@ a {
 
 .tweet .content {
   font-size: 14px;
+  word-wrap: break-word;
+}
+
+.tweet .content span, .tweet .content a {
+  line-height: 1.8;
+  word-wrap: normal;
+  display: inline-block;
+  margin-right: 5px;
 }
 
 .tweet .image-holder {
@@ -83,5 +91,19 @@ a {
 }
 
 .tweet .image-holder img{
+  margin-top: 5px;
   max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  #content-root .search-form input {
+    margin-left: 5%;
+    margin-bottom: 10px;
+    width: 90%;
+  }
+
+  #content-root .search-form .search-button {
+    margin-left: 5%;
+    width: 90%;
+  }
 }

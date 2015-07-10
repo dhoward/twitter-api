@@ -1,15 +1,28 @@
 var App = React.createClass({
 
+  mixins: [React.addons.LinkedStateMixin],
+
   getInitialState: function() {
     return {
-      feed: new Feed()
+      username: null,
+      feed: new Feed(),
+      loading: false
     }
+  },
+
+  getFeedForUser: function(username) {
+    var _this = this;
+    this.setState({ username: username }, function(){
+      _this.getFeed();
+    });
   },
 
   getFeed: function() {
     var _this = this;
-    var username = React.findDOMNode(this.refs.username).value;
+    var username = this.state.username;
     var feed = new Feed({ username: username });
+
+    this.setState({ loading: true });
 
     feed.fetch().then( function(){
       _this.updateFeed(feed);
@@ -17,13 +30,14 @@ var App = React.createClass({
   },
 
   updateFeed: function(feed) {
-    this.setState({ feed: feed })
+    this.setState({ feed: feed, loading: false })
   },
 
   renderTweets: function() {
+    var _this = this;
     var tweets = this.state.feed.get('tweets') || [];
     var tweetItems =  tweets.map( function(tweet) {
-      return <Tweet key={tweet.id} tweet={tweet} />
+      return <Tweet key={tweet.id} tweet={tweet} getFeedHandler={_this.getFeedForUser} />
     });
 
     if(!tweets.length) {
@@ -48,7 +62,6 @@ var App = React.createClass({
 
   render: function() {
     return (
-
       <div className="container">
 
         <div className="row instructions">
@@ -59,8 +72,12 @@ var App = React.createClass({
 
         <div className="row form-inline search-form">
           <div className="col-xs-12">
-            <input className="form-control" ref="username" placeholder="username" onKeyDown={this.checkEnter}></input>
-            <button className="btn btn-primary search-button" onClick={this.getFeed}>Get Feed</button>
+            <input className="form-control" valueLink={this.linkState('username')} placeholder="username" onKeyDown={this.checkEnter}></input>
+            { this.state.loading ?
+                <button className="btn btn-primary search-button" disabled>Loading...</button>
+              :
+                <button className="btn btn-primary search-button" onClick={this.getFeed}>Get Feed</button>
+            }
           </div>
         </div>
 

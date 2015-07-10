@@ -1,5 +1,11 @@
 var User = React.createClass({
 
+  getDefaultProps: function() {
+    return {
+      user: null
+    }
+  },
+
   render: function() {
     var user = this.props.user;
 
@@ -10,7 +16,7 @@ var User = React.createClass({
     return (
       <div className="user">
         <img src={ user. profile_image_url} />
-        <span className="name">@{ user.name }</span> <span className="followers">{ user.followers_count } Followers</span>
+        <span className="name">{ user.name }</span> <span className="followers">{ user.followers_count } Followers</span>
       </div>
     )
   }
