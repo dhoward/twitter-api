@@ -29,6 +29,15 @@ var App = React.createClass({
     });
   },
 
+  getNextPage: function() {
+    var _this = this;
+    var feed = this.state.feed;
+
+    feed.getMore().then( function(){
+      _this.updateFeed(feed);
+    });
+  },
+
   updateFeed: function(feed) {
     this.setState({ feed: feed, loading: false })
   },
@@ -92,6 +101,18 @@ var App = React.createClass({
             { this.renderTweets() }
           </div>
         </div>
+
+        { this.state.feed.get('has_more') ?
+          <div className="row">
+            <div className="col-xs-12 load-more">
+              { this.state.loading ?
+                  <button className="btn btn-primary" disabled>Loading...</button>
+                :
+                  <button className="btn btn-primary" onClick={this.getNextPage}>Load More</button>
+              }
+            </div>
+          </div> : null
+        }
 
       </div>
     )

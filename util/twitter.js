@@ -9,8 +9,12 @@ var client = new Twitter({
 
 module.exports = {
 
-  getTweets: function(username, callback){
-    var params = { screen_name: username, count: 25 };
+  getTweets: function(username, count, max_id, callback){
+    if(count == null) {
+      count = 25;
+    };
+
+    var params = { screen_name: username, count: count, max_id: max_id };
 
     client.get('statuses/user_timeline', params, function(error, tweets, response){
       if (!error) {

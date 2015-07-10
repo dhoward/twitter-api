@@ -95,6 +95,10 @@ a {
   max-width: 100%;
 }
 
+.load-more {
+  text-align: center;
+}
+
 @media (max-width: 768px) {
   #content-root .search-form input {
     margin-left: 5%;

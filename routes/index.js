@@ -11,9 +11,15 @@ router.get('/', function(req, res, next) {
 /* GET api calls */
 router.get('/tweets', function(req, res, next) {
   var username = req.query.username;
+  var count = req.query.count;
+  var max_id = req.query.max_id;
 
-  twitter.getTweets( username, function(tweets) {
-    var user = tweets[0].user;
+  twitter.getTweets( username, count, max_id, function(tweets) {
+    var user = null;
+    if(tweets.length) {
+      user = tweets[0].user;
+    }
+
     res.send({ user: user, tweets: tweets });
   });
 });

@@ -29,6 +29,15 @@ var App = React.createClass({displayName: "App",
     });
   },
 
+  getNextPage: function() {
+    var _this = this;
+    var feed = this.state.feed;
+
+    feed.getMore().then( function(){
+      _this.updateFeed(feed);
+    });
+  },
+
   updateFeed: function(feed) {
     this.setState({ feed: feed, loading: false })
   },
@@ -91,7 +100,19 @@ var App = React.createClass({displayName: "App",
           React.createElement("div", {className: "col-xs-12"}, 
              this.renderTweets() 
           )
-        )
+        ), 
+
+         this.state.feed.get('has_more') ?
+          React.createElement("div", {className: "row"}, 
+            React.createElement("div", {className: "col-xs-12 load-more"}, 
+               this.state.loading ?
+                  React.createElement("button", {className: "btn btn-primary", disabled: true}, "Loading...")
+                :
+                  React.createElement("button", {className: "btn btn-primary", onClick: this.getNextPage}, "Load More")
+              
+            )
+          ) : null
+        
 
       )
     )
