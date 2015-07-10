@@ -2,16 +2,8 @@ doctype html
 html
   head
     title= title
-    script(type="text/javascript", src="/javascripts/lib/jquery-2.1.4.min.js")
-    script(type="text/javascript", src="/javascripts/lib/underscore-1.8.3.js")
-    script(type="text/javascript", src="/javascripts/lib/backbone-min.js")
-    script(type="text/javascript", src="/javascripts/lib/react-with-addons.min.js")
-    script(type="text/javascript", src="/javascripts/util/util.js")
-    script(type="text/javascript", src="/javascripts/models/feed.js")
-    script(type="text/javascript", src="/javascripts/components_build/user.js")
-    script(type="text/javascript", src="/javascripts/components_build/tweet.js")
-    script(type="text/javascript", src="/javascripts/components_build/app.js")
     link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
     block content
+    script(type="text/javascript", src="/javascripts/bundle.js")

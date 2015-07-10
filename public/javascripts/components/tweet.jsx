@@ -1,4 +1,7 @@
-var Tweet = React.createClass({
+React = require('react');
+Util = require('../util/util');
+
+module.exports = React.createClass({
 
   getDefaultProps: function() {
     return {
@@ -15,11 +18,11 @@ var Tweet = React.createClass({
     var _this = this;
     var words = content.split(' ');
 
-    return words.map( function(word) {
+    return words.map( function(word, i) {
       if(word.charAt(0) == '@') {
-        return <a href="#" onClick={_this.getFeed.bind(_this, _this.extractName(word))}>{word}</a>;
+        return <a className="mention" key={i} href="#" onClick={_this.getFeed.bind(_this, _this.extractName(word))}>{word}</a>;
       } else {
-        return word;
+        return <span key={i}>{ word }</span>;
       }
     });
   },
@@ -29,7 +32,8 @@ var Tweet = React.createClass({
       word = word.substr(1);
     }
 
-    if(word.charAt(word.length-1) === ':') {
+    var lastLetter = word.charAt(word.length-1);
+    if(lastLetter === ':' || lastLetter === ".") {
       word = word.substring(0, word.length - 1);
     }
 
@@ -43,7 +47,7 @@ var Tweet = React.createClass({
 
     var mediaItems = tweet.entities.media.map( function(media){
       return (
-        <a href={ media.display_url }>
+        <a className="media" key={ media.media_url } href={ media.media_url }>
           <img src={ media.media_url } />
         </a>
       );
@@ -63,7 +67,7 @@ var Tweet = React.createClass({
       <div className="tweet">
 
         <p className="time">
-          { formatDate(tweet.created_at) }
+          { Util.formatDate(tweet.created_at) }
         </p>
 
         <p className="content">

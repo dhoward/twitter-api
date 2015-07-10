@@ -1,6 +1,6 @@
 var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
-function formatDate(dateNum) {
+exports.formatDate = function(dateNum) {
   var date = new Date(dateNum);
   var month = months[date.getMonth()];
   var day = date.getDate();

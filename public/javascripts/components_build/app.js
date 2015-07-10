@@ -1,4 +1,10 @@
-var App = React.createClass({displayName: "App",
+React = require('react');
+require('react/addons');
+Feed = require('../models/feed')
+User = require('./user')
+Tweet = require('./tweet')
+
+module.exports = React.createClass({displayName: "exports",
 
   mixins: [React.addons.LinkedStateMixin],
 

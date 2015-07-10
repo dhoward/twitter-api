@@ -1,4 +1,7 @@
-var Tweet = React.createClass({displayName: "Tweet",
+React = require('react');
+Util = require('../util/util');
+
+module.exports = React.createClass({displayName: "exports",
 
   getDefaultProps: function() {
     return {
@@ -15,11 +18,11 @@ var Tweet = React.createClass({displayName: "Tweet",
     var _this = this;
     var words = content.split(' ');
 
-    return words.map( function(word) {
+    return words.map( function(word, i) {
       if(word.charAt(0) == '@') {
-        return React.createElement("a", {href: "#", onClick: _this.getFeed.bind(_this, _this.extractName(word))}, word);
+        return React.createElement("a", {className: "mention", key: i, href: "#", onClick: _this.getFeed.bind(_this, _this.extractName(word))}, word);
       } else {
-        return word;
+        return React.createElement("span", {key: i},  word );
       }
     });
   },
@@ -29,7 +32,8 @@ var Tweet = React.createClass({displayName: "Tweet",
       word = word.substr(1);
     }
 
-    if(word.charAt(word.length-1) === ':') {
+    var lastLetter = word.charAt(word.length-1);
+    if(lastLetter === ':' || lastLetter === ".") {
       word = word.substring(0, word.length - 1);
     }
 
@@ -43,7 +47,7 @@ var Tweet = React.createClass({displayName: "Tweet",
 
     var mediaItems = tweet.entities.media.map( function(media){
       return (
-        React.createElement("a", {href:  media.display_url}, 
+        React.createElement("a", {className: "media", key:  media.media_url, href:  media.media_url}, 
           React.createElement("img", {src:  media.media_url})
         )
       );
@@ -63,7 +67,7 @@ var Tweet = React.createClass({displayName: "Tweet",
       React.createElement("div", {className: "tweet"}, 
 
         React.createElement("p", {className: "time"}, 
-           formatDate(tweet.created_at) 
+           Util.formatDate(tweet.created_at) 
         ), 
 
         React.createElement("p", {className: "content"}, 

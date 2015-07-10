@@ -1,4 +1,6 @@
-var User = React.createClass({
+React = require('react');
+
+module.exports = React.createClass({
 
   getDefaultProps: function() {
     return {
