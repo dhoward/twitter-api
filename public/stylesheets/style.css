@@ -77,3 +77,11 @@ a {
 .tweet .content {
   font-size: 14px;
 }
+
+.tweet .image-holder {
+  text-align: center;
+}
+
+.tweet .image-holder img{
+  max-width: 100%;
+}
