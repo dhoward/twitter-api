@@ -4,11 +4,10 @@ block content
   h1= title
   p Welcome to #{title}
 
-  script(type='text/javascript').
-    var user = !{JSON.stringify(user)};
-    var tweets = !{JSON.stringify(tweets)};
+  #content-root
 
-    var feed = new Feed({ username:"BarackObama" })
-    feed.fetch().then( function(){
-      console.log(feed);
-    })
+  script(type='text/javascript').
+    React.render(
+      React.createElement(App),
+      document.getElementById('content-root')
+    );

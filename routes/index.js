@@ -5,10 +5,7 @@ var default_username = 'BarackObama';
 
 /* GET home page */
 router.get('/', function(req, res, next) {
-  twitter.getTweets( default_username, function(tweets) {
-    var user = tweets[0].user;
-    res.render('index', { title: 'Twitter API', user: user, tweets: tweets });
-  });
+  res.render('index', { title: 'Twitter API' });
 });
 
 /* GET api calls */
