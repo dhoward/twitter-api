@@ -14,6 +14,8 @@ module.exports = Backbone.Model.extend({
     return '/tweets?username='+this.get('username')
   },
 
+  // ths is a thin wrapper around fetch which adds a param to
+  // get the next set of tweets
   getMore: function() {
     if(!this.get('tweets')) {
       return this.fetch();
@@ -25,6 +27,8 @@ module.exports = Backbone.Model.extend({
     return this.fetch({ data: param });
   },
 
+  // add any new tweets to the current list
+  // has_more is false if less than a full page is returned
   parse: function(data) {
     var tweets = this.get('tweets');
 

@@ -10,10 +10,12 @@ module.exports = React.createClass({displayName: "exports",
     }
   },
 
+  // call the given callback when a @mention is clicked
   getFeed: function(username) {
     this.props.getFeedHandler(username);
   },
 
+  // create links out of @mentions in tweet
   parseContent: function(content) {
     var _this = this;
     var words = content.split(' ');
@@ -27,6 +29,7 @@ module.exports = React.createClass({displayName: "exports",
     });
   },
 
+  // remove any punctuation from @mentions for correct linking
   extractName: function(word) {
     if(word.charAt(0) === '@') {
       word = word.substr(1);
@@ -40,6 +43,7 @@ module.exports = React.createClass({displayName: "exports",
     return word;
   },
 
+  // render any media in tweet
   renderImages: function(tweet) {
     if(!tweet.entities.media) {
       return null;

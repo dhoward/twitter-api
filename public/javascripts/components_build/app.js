@@ -16,6 +16,7 @@ module.exports = React.createClass({displayName: "exports",
     }
   },
 
+  // callback used when a @mention is clicked on
   getFeedForUser: function(username) {
     var _this = this;
     this.setState({ username: username }, function(){
@@ -23,6 +24,7 @@ module.exports = React.createClass({displayName: "exports",
     });
   },
 
+  // get a new feed when a user is searched
   getFeed: function() {
     var _this = this;
     var username = this.state.username;
@@ -35,6 +37,7 @@ module.exports = React.createClass({displayName: "exports",
     });
   },
 
+  // get more tweets from the existing feed
   getNextPage: function() {
     var _this = this;
     var feed = this.state.feed;
@@ -44,6 +47,7 @@ module.exports = React.createClass({displayName: "exports",
     });
   },
 
+  // update the UI when a feed is populated
   updateFeed: function(feed) {
     this.setState({ feed: feed, loading: false })
   },
@@ -69,6 +73,7 @@ module.exports = React.createClass({displayName: "exports",
     }
   },
 
+  // if the user pressed Enter on the search bar, reload feed
   checkEnter: function(event) {
     if(event.keyCode == 13){
       this.getFeed();

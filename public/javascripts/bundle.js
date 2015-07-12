@@ -34361,6 +34361,7 @@ module.exports = React.createClass({displayName: "exports",
     }
   },
 
+  // callback used when a @mention is clicked on
   getFeedForUser: function(username) {
     var _this = this;
     this.setState({ username: username }, function(){
@@ -34368,6 +34369,7 @@ module.exports = React.createClass({displayName: "exports",
     });
   },
 
+  // get a new feed when a user is searched
   getFeed: function() {
     var _this = this;
     var username = this.state.username;
@@ -34380,6 +34382,7 @@ module.exports = React.createClass({displayName: "exports",
     });
   },
 
+  // get more tweets from the existing feed
   getNextPage: function() {
     var _this = this;
     var feed = this.state.feed;
@@ -34389,6 +34392,7 @@ module.exports = React.createClass({displayName: "exports",
     });
   },
 
+  // update the UI when a feed is populated
   updateFeed: function(feed) {
     this.setState({ feed: feed, loading: false })
   },
@@ -34414,6 +34418,7 @@ module.exports = React.createClass({displayName: "exports",
     }
   },
 
+  // if the user pressed Enter on the search bar, reload feed
   checkEnter: function(event) {
     if(event.keyCode == 13){
       this.getFeed();
@@ -34484,10 +34489,12 @@ module.exports = React.createClass({displayName: "exports",
     }
   },
 
+  // call the given callback when a @mention is clicked
   getFeed: function(username) {
     this.props.getFeedHandler(username);
   },
 
+  // create links out of @mentions in tweet
   parseContent: function(content) {
     var _this = this;
     var words = content.split(' ');
@@ -34501,6 +34508,7 @@ module.exports = React.createClass({displayName: "exports",
     });
   },
 
+  // remove any punctuation from @mentions for correct linking
   extractName: function(word) {
     if(word.charAt(0) === '@') {
       word = word.substr(1);
@@ -34514,6 +34522,7 @@ module.exports = React.createClass({displayName: "exports",
     return word;
   },
 
+  // render any media in tweet
   renderImages: function(tweet) {
     if(!tweet.entities.media) {
       return null;
@@ -34609,6 +34618,8 @@ module.exports = Backbone.Model.extend({
     return '/tweets?username='+this.get('username')
   },
 
+  // ths is a thin wrapper around fetch which adds a param to
+  // get the next set of tweets
   getMore: function() {
     if(!this.get('tweets')) {
       return this.fetch();
@@ -34620,6 +34631,8 @@ module.exports = Backbone.Model.extend({
     return this.fetch({ data: param });
   },
 
+  // add any new tweets to the current list
+  // has_more is false if less than a full page is returned
   parse: function(data) {
     var tweets = this.get('tweets');
 
