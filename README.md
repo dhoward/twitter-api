@@ -39,7 +39,7 @@ React components in this project are written in jsx. They are then compiled into
 
 #####Automatically compile .jsx files into .js
 
-$ nom install -g react-tools
+$ npm install -g react-tools
 
 $ jsx --watch public/javascripts/components/ public/javascripts/components_build/ -x jsx
 
