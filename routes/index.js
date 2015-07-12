@@ -14,7 +14,12 @@ router.get('/tweets', function(req, res, next) {
   var count = req.query.count;
   var max_id = req.query.max_id;
 
-  twitter.getTweets( username, count, max_id, function(tweets) {
+  twitter.getTweets( username, count, max_id, function(error, tweets) {
+    if(error) {
+      res.send({ error: 'Could not find user', user: {}, tweets: [] });
+      return;
+    }
+
     var user = null;
     if(tweets.length) {
       user = tweets[0].user;

@@ -16,11 +16,7 @@ module.exports = {
 
     var params = { screen_name: username, count: count, max_id: max_id };
 
-    client.get('statuses/user_timeline', params, function(error, tweets, response){
-      if (!error) {
-        callback(tweets);
-      }
-    });
+    client.get('statuses/user_timeline', params, callback);
   }
 
 };

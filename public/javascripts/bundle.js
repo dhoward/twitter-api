@@ -34448,7 +34448,11 @@ module.exports = React.createClass({displayName: "exports",
 
         React.createElement("div", {className: "row"}, 
           React.createElement("div", {className: "col-xs-12"}, 
-            React.createElement(User, {user:  this.state.feed.get('user') })
+             this.state.feed.get('error') ?
+                React.createElement("h2", {className: "text-center"}, "Could not locate user")
+              :
+                React.createElement(User, {user:  this.state.feed.get('user') })
+            
           )
         ), 
 
@@ -34648,7 +34652,7 @@ module.exports = Backbone.Model.extend({
 });
 
 },{"backbone":1,"jquery":3}],182:[function(require,module,exports){
-var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 exports.formatDate = function(dateNum) {
   var date = new Date(dateNum);
@@ -34672,6 +34676,7 @@ exports.formatDate = function(dateNum) {
 
   return month + " " + day + ", " + year + " @ " + hours + ":" + minutes + modifier;
 };
+
 },{}],183:[function(require,module,exports){
 // shim for using process in browser
 

@@ -103,7 +103,11 @@ module.exports = React.createClass({displayName: "exports",
 
         React.createElement("div", {className: "row"}, 
           React.createElement("div", {className: "col-xs-12"}, 
-            React.createElement(User, {user:  this.state.feed.get('user') })
+             this.state.feed.get('error') ?
+                React.createElement("h2", {className: "text-center"}, "Could not locate user")
+              :
+                React.createElement(User, {user:  this.state.feed.get('user') })
+            
           )
         ), 
 
